@@ -48,7 +48,16 @@ public class Main {
     }
 
     private static void playGame(/*int totalWord*/) throws IOException {
+        FileInputStream fis = new FileInputStream("C:\\Users\\mirza\\IdeaProjects\\guess-word-game\\src\\words.xlsx");
+        XSSFWorkbook wb = new XSSFWorkbook(fis);
+        XSSFSheet sheet = wb.getSheetAt(0);     //creating a Sheet object to retrieve object
+        Iterator<Row> itr = sheet.iterator();
+
         Random random = new Random();
+        random.nextInt(sheet.getLastRowNum() + 1);
+        Row row = sheet.getRow(2);
+//        Cell cell = sheet.getRo;
+        System.out.println(row);
 //        char[] word = Files.readAllLines(
 //                        Paths.get("C:\\Users\\mirza\\IdeaProjects\\guess-word-game\\src\\names.txt"))
 //                .get(random.nextInt(totalWord)).toCharArray();
@@ -63,30 +72,27 @@ public class Main {
 //                guess[i] = '_';
 //            }
 //        }
-        FileInputStream fis = new FileInputStream("C:\\Users\\mirza\\IdeaProjects\\guess-word-game\\src\\words.xlsx");
-        XSSFWorkbook wb = new XSSFWorkbook(fis);
-        XSSFSheet sheet = wb.getSheetAt(0);     //creating a Sheet object to retrieve object
-        Iterator<Row> itr = sheet.iterator();
-        while (itr.hasNext())
-        {
-            Row row = itr.next();
-            Iterator<Cell> cellIterator = row.cellIterator();   //iterating over each column
-            while (cellIterator.hasNext())
-            {
-                Cell cell = cellIterator.next();
-                switch (cell.getCellType())
-                {
-                    case Cell.CELL_TYPE_STRING:    //field that represents string cell type
-                        System.out.print(cell.getStringCellValue());
-                        break;
-                    case Cell.CELL_TYPE_NUMERIC:    //field that represents number cell type
-                        System.out.print(cell.getNumericCellValue());
-                        break;
-                    default:
-                }
-            }
-            System.out.println("");
-        }
+//        while (itr.hasNext())
+//        {
+
+//            Row row = itr.next();
+//            Iterator<Cell> cellIterator = row.cellIterator();   //iterating over each column
+//            while (cellIterator.hasNext())
+//            {
+//                Cell cell = cellIterator.next();
+//                switch (cell.getCellType())
+//                {
+//                    case Cell.CELL_TYPE_STRING:    //field that represents string cell type
+//                        System.out.print(cell.getStringCellValue());
+//                        break;
+//                    case Cell.CELL_TYPE_NUMERIC:    //field that represents number cell type
+//                        System.out.print(cell.getNumericCellValue());
+//                        break;
+//                    default:
+//                }
+//            }
+//            System.out.println("");
+//        }
 //        int wrongCount = 0;
 //        Scanner scanner = new Scanner(System.in);
 //        String red = "\u001B[31m";
@@ -142,4 +148,6 @@ public class Main {
 //            return -1;
 //        }
     }
+
+//    public static void getFileFromPath
 }
