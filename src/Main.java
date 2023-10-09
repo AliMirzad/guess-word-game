@@ -8,13 +8,13 @@ import java.util.Scanner;
 
 public class Main {
     private static Scanner scanner;
+
     public static void main(String[] args) throws IOException {
         scanner = new Scanner(System.in);
         int point = 0;
         cc:
         while (true) {
-            System.out.println("what do u want?\n" +
-                    "#play #point #exit\n");
+            System.out.println("what do u want?\n" + "#play #point #exit");
             String input = scanner.next();
             switch (input) {
                 case "play":
@@ -40,11 +40,9 @@ public class Main {
         char[] wordChars = word.toCharArray();
         char[] guess = new char[word.length()];
         for (int i = 0; i < word.length(); i++) {
-            if (wordChars[i] == wordChars[random.nextInt(word.length())] ||
-                    wordChars[i] == wordChars[random.nextInt(word.length())])
+            if (wordChars[i] == wordChars[random.nextInt(word.length())] || wordChars[i] == wordChars[random.nextInt(word.length())])
                 guess[i] = wordChars[i];
-            else
-                guess[i] = '_';
+            else guess[i] = '_';
         }
         int wrongCount = 0;
         scanner = new Scanner(System.in);
@@ -52,11 +50,10 @@ public class Main {
         bb:
         while (wrongCount <= 5) {
             for (char c : guess) {
-                if (c == '_')
-                    System.out.print(changeColor("red") + c);
-                else
-                    System.out.print(changeColor("green") + c);
+                if (c == '_') System.out.print(changeColor("red") + c);
+                else System.out.print(changeColor("green") + c);
             }
+            System.out.println();
             System.out.println(changeColor("reset") + "enter your word: ");
             char charGuess = scanner.next().charAt(0);
             boolean flag = true;
@@ -89,10 +86,8 @@ public class Main {
             }
         }
         if (winner) {
-            scanner.close();
             return 1;
         } else {
-            scanner.close();
             return -1;
         }
     }
