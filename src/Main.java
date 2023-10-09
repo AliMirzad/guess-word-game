@@ -1,8 +1,9 @@
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -14,11 +15,14 @@ public class Main {
         int point = 0;
         cc:
         while (true) {
-            System.out.println("what do u want?\n" + "#play #point #exit");
+            System.out.println("what do u want?\n" + "#play #point #new_word #exit");
             String input = scanner.next();
             switch (input) {
                 case "play":
                     point += playGame();
+                    break;
+                case "new_word":
+                    enterNewWord();
                     break;
                 case "point":
                     System.out.println(point);
@@ -29,6 +33,19 @@ public class Main {
             }
         }
         scanner.close();
+    }
+
+    private static void enterNewWord() throws IOException {
+        scanner = new Scanner(System.in);
+        FileInputStream fis = new FileInputStream("C:\\Users\\mirza\\IdeaProjects\\guess-word-game\\src\\words.xlsx");
+        XSSFWorkbook wb = new XSSFWorkbook(fis);
+        XSSFSheet sheet = wb.getSheetAt(0);
+        Row row = sheet.createRow(sheet.getLastRowNum() + 1);
+        Cell cell = row.createCell(0);
+        System.out.println("enter word:");
+        cell.setCellValue(scanner.next());
+        FileOutputStream out = new FileOutputStream(new File("C:\\Users\\mirza\\IdeaProjects\\guess-word-game\\src\\words.xlsx"));
+        wb.write(out);
     }
 
     private static int playGame() throws IOException {
