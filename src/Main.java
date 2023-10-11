@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class Main {
     private static Scanner scanner;
 
+    /*main system*/
     public static void main(String[] args) throws IOException {
         scanner = new Scanner(System.in);
         int point = 0;
@@ -35,6 +36,7 @@ public class Main {
         scanner.close();
     }
 
+    /*method for enter new word to excel file*/
     private static void enterNewWord() throws IOException {
         scanner = new Scanner(System.in);
         FileInputStream fis = new FileInputStream("C:\\Users\\mirza\\IdeaProjects\\guess-word-game\\src\\words.xlsx");
@@ -48,6 +50,7 @@ public class Main {
         wb.write(out);
     }
 
+    /*play game method*/
     private static int playGame() throws IOException {
         FileInputStream fis = new FileInputStream("C:\\Users\\mirza\\IdeaProjects\\guess-word-game\\src\\words.xlsx");
         XSSFWorkbook wb = new XSSFWorkbook(fis);
@@ -109,6 +112,7 @@ public class Main {
         }
     }
 
+    /*change console log color*/
     public static String changeColor(String color) {
         if (color.equals("red")) return "\u001B[31m";
         if (color.equals("green")) return "\u001B[32m";
